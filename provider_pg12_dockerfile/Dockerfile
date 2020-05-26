@@ -23,8 +23,9 @@ VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql", "/data
 
 USER postgres
 
-# from terminal: docker run -d --publish 5433:5432  --network postgres-network --name sample [image_id]
+# from terminal: docker run --publish 5433:5432  --network postgres-network --name sample [image_id]
 # Debugging image build failures: docker run -it [image_id] /bin/bash
 #
+# Original command: CMD ["/usr/lib/postgresql/12/bin/pg_ctl",  "-D", "/database", "-l", "/logfile", "start"]
 # Set the default command to run when starting the container
-CMD ["/usr/lib/postgresql/12/bin/postgres", "-D", "/database", "-l", "/logfile", "-c", "config_file=/database/postgresql.conf"]
+CMD ["/usr/lib/postgresql/12/bin/postgres", "-D", "/database", "-c", "config_file=/database/postgresql.conf"]
